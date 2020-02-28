@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const secretObj = require("../config/jwt");
 
 // 1.jwt 객체의 sign()메서드를 호출해서 토큰을 생성한다.
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     let token = jwt.sign({
         username: "abc@gmail.com"  // 토근의 내용(payload)
     }, secretObj.secret); //비밀 키 
@@ -20,16 +20,15 @@ router.get('/', async (req, res) => {
         }
     })
         .then(user => {
-            if (user.password === req.body.password) {
-                res.cookie("user: ", token);
-                res.json({
-                    token: token
-                })
-            }
+          if (user.password === req.body.password) {
+            res.cookie("user: ", token);
+            res.json({
+                token: token
+            })
+        } else {
+            res.status(409).send("email doesn't exist");
+        }
         })
-        .catch(error =>
-            console.log('there is an error')
-        );
 });
 
 module.exports = router;
