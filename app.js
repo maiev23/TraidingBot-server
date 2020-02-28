@@ -1,14 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
+const app = express();
+const port = 4000;
 
 const signupRouter = require('./routes/signup.js');
 const loginRouter = require('./routes/login.js');
 
-const app = express();
-const port = 4000;
+const bodyParser = require('body-parser');
+
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 app.use(bodyParser.json());
 
@@ -24,10 +25,7 @@ app.use(cookieParser());
 
 app.get('/', (req, res) => {
     res.status(200).send('Success');
-    console.log(req.session);
 });
-
-// localhost:4000/signup
 
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
