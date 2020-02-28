@@ -1,14 +1,23 @@
 const express = require('express');
+
+const app = express();
+const port = 4000;
+
+// localhost:4000/signup
+// console.log(signupRouter);
+
+const signupRouter = require('./routes/signup.js');
+app.use('/signup', signupRouter);
+
+const loginRouter = require('./routes/login.js');
+app.use('/login', loginRouter);
+
 const bodyParser = require('body-parser');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
-const signupRouter = require('./routes/signup.js');
-const loginRouter = require('./routes/login.js');
 
-const app = express();
-const port = 4000;
 
 app.use(bodyParser.json());
 
@@ -27,10 +36,6 @@ app.get('/', (req, res) => {
     console.log(req.session);
 });
 
-// localhost:4000/signup
-// console.log(signupRouter);
-app.use('/signup', signupRouter);
-app.use('/login', loginRouter);
 
 app.listen(port, () => 
 console.log(`Example app listening on port ${port}!`));
