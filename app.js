@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 // localhost:4000/signup
-// console.log(signupRouter);
+
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 
