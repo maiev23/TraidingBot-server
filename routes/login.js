@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     })
         .then(user => {
             if (user.password === req.body.password) {
-                res.cookie("user is: ", token);
+                res.cookie("user: ", token);
                 res.json({
                     token: token
                 })
