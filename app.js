@@ -3,21 +3,13 @@ const express = require('express');
 const app = express();
 const port = 4000;
 
-// localhost:4000/signup
-// console.log(signupRouter);
-
 const signupRouter = require('./routes/signup.js');
-app.use('/signup', signupRouter);
-
 const loginRouter = require('./routes/login.js');
-app.use('/login', loginRouter);
 
 const bodyParser = require('body-parser');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-
-
 
 app.use(bodyParser.json());
 
@@ -33,9 +25,10 @@ app.use(cookieParser());
 
 app.get('/', (req, res) => {
     res.status(200).send('Success');
-    console.log(req.session);
 });
 
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
 
 app.listen(port, () => 
 console.log(`Example app listening on port ${port}!`));
