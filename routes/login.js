@@ -25,8 +25,11 @@ router.get('/', async (req, res) => {
                 res.json({
                     token: token
                 })
+            } else {
+                res.status(409).send('email doesn't exist);
             }
         })
+        // login 성공을 했는데
         .catch(error =>
             console.log('there is an error')
         );
