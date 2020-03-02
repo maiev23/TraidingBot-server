@@ -3,10 +3,6 @@ const router = express.Router();
 //const { users } = require('../models');
 const { userController } = require('../controller');
 
-
-//const jwt = require("jsonwebtoken");
-//const secretObj = require("../config/jwt");
-
 router.post('/', userController.login.post);
 
 module.exports = router;
