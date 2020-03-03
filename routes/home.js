@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { userController } = require('../controller');
+const { homeController } = require('../controller');
 
 // POST /signup
-router.post('/', userController.signup.post);
+router.post('/', homeController.signup.post);
 
 // 비밀번호를 잊으셨습니까?
 

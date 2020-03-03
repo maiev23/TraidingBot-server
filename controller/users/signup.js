@@ -3,7 +3,6 @@ const { users } = require('../../models');
 module.exports = {
   post: (req, res) => {
     // sKey와 aKey의 타당성을 확인하기 위해서 테스트로 해당 key들을 이용한 API 
-    console.log(1)
     users.findOrCreate({
       where: {
         username: req.body.username
