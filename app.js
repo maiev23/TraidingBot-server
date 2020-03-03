@@ -20,6 +20,8 @@ app.use(
 
 app.use(bodyParser.json());
 
+app.use(cookieParse());
+
 app.get('/', (req, res) => {
   res.send('working');
 });
