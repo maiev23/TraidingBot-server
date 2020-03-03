@@ -6,7 +6,6 @@ module.exports = {
             username: "abc@gmail.com"  // 토근의 내용(payload)
         }, secretObj.secret); //비밀 키 
         //2. sequelize를 사용해서 요청한 이메일 주소에 해당하는 정보를 DB에서 조회합니다.
-
         users.findOne({
             where: {
                 username: req.body.username
