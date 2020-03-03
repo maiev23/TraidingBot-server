@@ -19,13 +19,11 @@ module.exports = {
         })
             .then(user => {
                 if (user.password === req.body.password) {
-                    res.cookie("user: ", token);
-                    return res;
+                    res.send(token);
                 } else {
                     res.status(409).send("email doesn't exist");
                 }
             })
-            .then(res => console.log(res.cookie));
 
 
     }

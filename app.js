@@ -8,7 +8,6 @@ const loginRouter = require('./routes/login.js');
 const memeRouter = require('./routes/meme.js')
 const bodyParser = require('body-parser');
 
-const cookieParser = require('cookie-parser');
 
 app.use(
   cors({
@@ -19,8 +18,6 @@ app.use(
 );
 
 app.use(bodyParser.json());
-
-app.use(cookieParse());
 
 app.get('/', (req, res) => {
   res.send('working');
