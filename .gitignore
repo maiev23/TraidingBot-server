@@ -2,4 +2,3 @@ node_modules/
 
 config/
 
-// 1시 EC2에 있는 config 폴더 수정하고 EC2랑 RDS 연동시키기

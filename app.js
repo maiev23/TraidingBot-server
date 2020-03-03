@@ -5,7 +5,7 @@ const port = 4000;
 
 const signupRouter = require('./routes/signup.js');
 const loginRouter = require('./routes/login.js');
-
+const memeRouter = require('./routes/meme.js')
 const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser');
@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
+app.use('/meme', memeRouter);
 
 app.listen(port, () =>
   console.log(`Example app listening on port ${port}!`));
