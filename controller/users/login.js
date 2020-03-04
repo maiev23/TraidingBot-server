@@ -1,4 +1,6 @@
+const crypto = require('crypto');
 const { users } = require('../../models');
+
 
 const jwt = require('jsonwebtoken')
 const secretObj = require('../../config/jwt');
@@ -10,26 +12,41 @@ module.exports = {
         }, secretObj.secret, {
             expiresIn: '30m'
 
-          }); //비밀 키 
-        //2. sequelize를 사용해서 요청한 이메일 주소에 해당하는 정보를 DB에서 조회합니다.
+        });
+
+        let saltHashPassword = function (userpassword, salt) {
+            return new Promise((resolve, reject) => {
+                crypto.pbkdf2(userpassword, salt, 100263, 64, 'sha512', (err, key) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(key.toString('hex'));
+                    }
+                });
+            });
+        };
 
         users.findOne({
             where: {
-                username: req.body.username,
-                password: req.body.password
+                username: req.body.username
             }
         })
-            .then(user => {
-                if (user.password === req.body.password) {
+            .then(async user => {
+                let passwordLogged = await saltHashPassword(req.body.password, user.salt);
+
+                if (user.password === passwordLogged) {
                     res.json({
                         token: token
                     })
                 } else {
-                    res.status(409).send("email doesn't exist");
+                    console.log(user.password);
+                    console.log(passwordLogged);
+                    res.status(409).send("wrong password");
                 }
             })
-            .catch(err =>{
-                res.status(409).send(err);
+            .catch(err => {
+                console.log(err);
+                res.status(409).send('username does not exist');
             })
 
 
