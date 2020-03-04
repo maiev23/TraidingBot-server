@@ -19,10 +19,11 @@ module.exports = {
                   username: decoded.username
                 }
               })
-              const upbit = new Upbit(key.sKey, key.aKey)
-              let json = await upbit.order_chance(req.body.market)
-              res.status(201).send(json.data)
-            }
+            console.log(req.body)
+            const upbit = new Upbit(key.sKey, key.aKey)
+            let json = await upbit.order_ask(req.body.market, req.body.jumuns, req.body.mesu)
+            res.status(201).send(json)
+        }
     })
   }
 }

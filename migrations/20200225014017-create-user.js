@@ -22,6 +22,12 @@ module.exports = {
       },
       salt: {
         type: Sequelize.STRING
+      },
+      key: {
+        type: Sequelize.STRING
+      },
+      iv: {
+        type: Sequelize.STRING
       }
     });
   },
