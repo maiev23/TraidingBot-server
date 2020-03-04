@@ -51,7 +51,7 @@ module.exports = {
           const upbit = new Upbit(sKey, aKey)
           
           //let json = await upbit.order_chance(req.body.market)
-          let json = await upbit.order_chance("KRW-BTC")
+          let json = await upbit.order_chance(req.body.market)
           
           //console.log(json)
           res.status(201).send(json.data)
