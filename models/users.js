@@ -5,7 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     sKey: DataTypes.STRING,
     aKey: DataTypes.STRING,
-    salt: DataTypes.STRING
-  }, { timestamps: false });
+    salt: DataTypes.STRING,
+    key: DataTypes.STRING,
+    iv: DataTypes.STRING
+  }, {
+    timestamps: false
+ 
+  });
   return users;
 };
