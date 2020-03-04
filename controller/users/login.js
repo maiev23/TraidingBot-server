@@ -7,7 +7,14 @@ const secretObj = require('../../config/jwt');
 
 module.exports = {
     post: (req, res) => {
-        let token = jwt.sign({
+        let accessToken = jwt.sign({
+            username: req.body.username  // 토근의 내용(payload)
+        }, secretObj.secret, {
+            expiresIn: '1m'
+
+        });
+
+        let refreshToken = jwt.sign({
             username: req.body.username  // 토근의 내용(payload)
         }, secretObj.secret, {
             expiresIn: '30m'
@@ -26,6 +33,7 @@ module.exports = {
             });
         };
 
+        //2. sequelize를 사용해서 요청한 이메일 주소에 해당하는 정보를 DB에서 조회합니다.
         users.findOne({
             where: {
                 username: req.body.username
@@ -35,8 +43,9 @@ module.exports = {
                 let passwordLogged = await saltHashPassword(req.body.password, user.salt);
 
                 if (user.password === passwordLogged) {
-                    res.json({
-                        token: token
+                    res.send({
+                        accessToken: accessToken,
+                        refreshToken: refreshToken
                     })
                 } else {
                     console.log(user.password);
