@@ -1,5 +1,7 @@
 module.exports = {
-    meme: require('./meme.js'),
-    mesu: require('./mesu.js'),
-    medo: require('./medo.js')
+    info: require('./info.js'),
+    buy: require('./buy.js'),
+    sell: require('./sell.js'),
+    list: require('./list.js'),
+    cancle: require('./cancle.js')
 }

@@ -3,8 +3,10 @@ const router = express.Router();
 
 const { memeController } = require('../controller');
 
-router.post('/meme', memeController.meme.post);
-router.post('/mesu', memeController.mesu.post);
-router.post('/medo', memeController.medo.post)
+router.post('/info', memeController.info.post);
+router.post('/buy', memeController.buy.post);
+router.post('/sell', memeController.sell.post);
+router.post('/list', memeController.list.post);
+router.post('/cancle',memeController.cancle.post)
 
 module.exports = router;
