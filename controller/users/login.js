@@ -7,17 +7,17 @@ const secretObj = require('../../config/jwt');
 
 module.exports = {
     post: (req, res) => {
-        let token = jwt.sign({
+        let accessToken = jwt.sign({
             username: req.body.username  // 토근의 내용(payload)
         }, secretObj.secret, {
-            expiresIn: '30m'
+            expiresIn: '1m'
 
         });
 
-        let RefreshToken = jwt.sign({
+        let refreshToken = jwt.sign({
             username: req.body.username  // 토근의 내용(payload)
         }, secretObj.secret, {
-            expiresIn: '7d'
+            expiresIn: '30m'
 
         });
 
@@ -43,8 +43,9 @@ module.exports = {
                 let passwordLogged = await saltHashPassword(req.body.password, user.salt);
 
                 if (user.password === passwordLogged) {
-                    res.json({
-                        token: token
+                    res.send({
+                        accessToken: accessToken,
+                        refreshToken: refreshToken
                     })
                 } else {
                     console.log(user.password);
