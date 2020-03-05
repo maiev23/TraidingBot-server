@@ -17,7 +17,7 @@ c) refresh token이 새로운 access토큰을 client에게 발급, refresh token
 module.exports = {
   post: async (req, res) => {
     let { accessToken, refreshToken } = req.body;
-    if (accessToken !== undefined) {
+    if (accessToken) {
       console.log('엑세스 토큰 받음')
       jwt.verify(accessToken, secretObj.secret, async function (err, decoded) {
         if (err) {
@@ -49,8 +49,7 @@ module.exports = {
       })
 
       //access토큰 없이 refresh토큰만 받았을때
-    } else if (accessToken === undefined) {
-      if (refreshToken !== undefined) {
+    } else{
         jwt.verify(refreshToken, secretObj.secret, async function (err, decoded) {
           if (err) {
             console.log('리프레시 토큰 인증실패 (expired)')
@@ -62,12 +61,9 @@ module.exports = {
               expiresIn: '20m'
             });
             res.send(accessToken); //새로운 access토큰을 client에게 보냄
-
-
           }
         })
-      }
-      //accessToken, refreshToken 둘 다 expired 돼서 client를 강제로 로그아웃 시킨다.
-    } else {res.redirect("/login")}
+    } 
   }
 }
+
