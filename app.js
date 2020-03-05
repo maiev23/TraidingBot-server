@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://maiev23.s3-website.ap-northeast-2.amazonaws.com','http://localhost:3000'],
     methods: ['GET', 'POST'],
     credentials: true
   })
