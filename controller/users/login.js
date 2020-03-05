@@ -10,14 +10,15 @@ module.exports = {
         let accessToken = jwt.sign({
             username: req.body.username  // 토근의 내용(payload)
         }, secretObj.secret, {
-            expiresIn: '20m'
+
+            expiresIn: '20m' //access token은 20분
 
         });
 
         let refreshToken = jwt.sign({
             username: req.body.username  // 토근의 내용(payload)
         }, secretObj.secret, {
-            expiresIn: '60m'
+            expiresIn: '2h'//access token은 2시간
 
         });
 
