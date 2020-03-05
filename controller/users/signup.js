@@ -41,7 +41,15 @@ module.exports = {
     // 비밀번호 단방향 암호화
     let salt = randomStringGenerator(16);
     let password = await saltHashPassword(req.body.password, salt);
+    
 
+    const upbit = new Upbit(req.body.sKey, req.body.aKey)
+          
+    //let json = await upbit.order_chance("KRW-BTC")
+    let json = await upbit.order_chance("KRW-BTC")
+
+
+    if(json.success){
     // sKey, aKey 양방향 암호화
     let key = randomStringGenerator(32);
     let iv = randomStringGenerator(16);
@@ -69,5 +77,8 @@ module.exports = {
           res.status(409).send('User already exists')
         }
       })
+    } else{
+      res.status(410).send('wrong key')
+    }
   }
 };
