@@ -14,13 +14,14 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      sKey: {
+        type: Sequelize.STRING
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      aKey: {
+        type: Sequelize.STRING
+      },
+      salt: {
+        type: Sequelize.STRING
       }
     });
   },
